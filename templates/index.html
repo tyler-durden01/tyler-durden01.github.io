@@ -4,18 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyle Jennings</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function (event) {
+                event.preventDefault();
+                var ticker = $("#ticker").val();
+                $.post("/get_company_data", { ticker: ticker }, function (data) {
+                    $("#data-container").empty();
+                    $.each(data, function (key, dataframe) {
+                        var table = $("<table border='1'></table>");
+                        var headerRow = $("<tr></tr>");
+                        $.each(dataframe[0], function (key, value) {
+                            headerRow.append("<th>" + key + "</th>");
+                        });
+                        table.append(headerRow);
+                        $.each(dataframe, function (index, record) {
+                            var dataRow = $("<tr></tr>");
+                            $.each(record, function (key, value) {
+                                dataRow.append("<td>" + value + "</td>");
+                            });
+                            table.append(dataRow);
+                        });
+                        $("#data-container").append("<h2>" + key + "</h2>").append(table);
+                    });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <nav>
-            <ul>
-                <!-- <li><a href="/">Home</a></li> --> 
-                <li><a href="get_company_data.html">Company Financial Data</a></li>
-                <li><a href="/TBD.html">Economic Data</a></li>
-                <li><a href="/TBD.html">Blockchain Analytics</a></li>
-                <li><a href="/TBD.html">Formula 1</a></li>
-                <!-- <li><a href="/other_section">Other Section</a></li> -->
-                <!-- Add more menu options as needed -->
-            </ul>
+        <ul>
+            <li><a href="/get_company_data">Company Financial Data</a></li>
+            <!-- Add more menu options as needed -->
+        </ul>
     </nav>
+    <div id="data-container"></div>
 </body>
 </html>
