@@ -160,22 +160,22 @@ def get_company_data():
         # Convert 'date' column to datetime
         # merged_df['date'] = pd.to_datetime(merged_df['date'])
         # Print the final merged DataFrame
-        print(merged_df)
+        # print(merged_df)
 
         horizontal_df = merged_df.div(merged_df['revenue'], axis=0)
         horizontal_df = horizontal_df.round(3)
-        print(horizontal_df)
+        # print(horizontal_df)
 
         # Calculate the % changes from the next period (descending order)
         # quarterly_pct_change_df = merged_df[::-1].set_index('date').pct_change()
         quarterly_pct_change_df = merged_df[::-1].pct_change()
         quarterly_pct_change_df = (quarterly_pct_change_df[::-1]).round(3) # Reverse the result back to ascending order
-        print(quarterly_pct_change_df)
+        # print(quarterly_pct_change_df)
 
         # yearly_pct_change_df = merged_df[::-1].set_index('date').pct_change(periods=4)
         yearly_pct_change_df = merged_df[::-1].pct_change(periods=4)
         yearly_pct_change_df = yearly_pct_change_df[::-1].round(3) # Reverse the result back to ascending order
-        print(yearly_pct_change_df)  
+        # print(yearly_pct_change_df)  
 
         annual_df = merged_df.copy()
         annual_df['year'] = pd.to_datetime(annual_df.index)
@@ -183,11 +183,11 @@ def get_company_data():
         annual_df = annual_df.groupby('year').sum()
         annual_df = annual_df[::-1]
         annual_df.index.name = 'date'
-        print(annual_df)
+        # print(annual_df)
 
         annual_pct_change_df = annual_df[::-1].pct_change()
         annual_pct_change_df = annual_pct_change_df[::-1].round(3)
-        print(annual_pct_change_df)
+        # print(annual_pct_change_df)
 
         # Create a new DataFrame for cumulative sums
         ttm_df = merged_df.copy()
@@ -197,20 +197,20 @@ def get_company_data():
         # Set NaN values for the last three rows
         ttm_df.iloc[-3:] = None
         # Print the cumulative sum DataFrame
-        print(ttm_df)
+        # print(ttm_df)
 
         # yearly_pct_change_df = merged_df[::-1].set_index('date').pct_change(periods=4)
         ttm_df_quarterly_pct_change = ttm_df[::-1].pct_change()
         ttm_df_quarterly_pct_change = ttm_df_quarterly_pct_change[::-1].round(3) # Reverse the result back to ascending order
-        print(ttm_df_quarterly_pct_change)
+        # print(ttm_df_quarterly_pct_change)
 
         # yearly_pct_change_df = merged_df[::-1].set_index('date').pct_change(periods=4)
         ttm_df_yearly_pct_change = ttm_df[::-1].pct_change(periods=4)
         ttm_df_yearly_pct_change = ttm_df_yearly_pct_change[::-1].round(3) # Reverse the result back to ascending order
-        print(ttm_df_yearly_pct_change)
+        # print(ttm_df_yearly_pct_change)
 
         # earnings_df.set_index('date', inplace=True)
-        print(earnings_df)
+        # print(earnings_df)
         # need to format this df so that date is the index
 
         tickers = [ticker.strip() for ticker in ticker.split(',')]
@@ -223,7 +223,7 @@ def get_company_data():
             for ticker in tickers:
                 df1 = pd.DataFrame(get_data(ticker, start_date, end_date))
                 df1.drop(['adjclose', 'ticker'], axis=1, inplace=True)
-                print(df1)
+                # print(df1)
 
                 # Define the API URL with the chosen ticker and date range for market capitalization
                 url = f"https://financialmodelingprep.com/api/v3/historical-market-capitalization/{ticker}?from={start_date}&to={end_date}&apikey=6fe8c4680cf2609b34c3674e0a32720b"
@@ -244,13 +244,13 @@ def get_company_data():
                         df2.set_index('date', inplace=True)
                         df2.drop(columns='symbol', inplace=True)
 
-                        print(df2)
+                        # print(df2)
 
                         combined_df = pd.concat([df1, df2], axis=1)  # Concatenate the DataFrames
                         combined_dfs.append(combined_df)  # Append to the list
 
                 except requests.exceptions.RequestException as e:
-                    print(f"Error fetching data for {ticker}: {e}")
+                    # print(f"Error fetching data for {ticker}: {e}")
                     continue  # Continue to the next ticker in case of an error
 
             return combined_dfs  # Return the list of DataFrames
@@ -263,7 +263,7 @@ def get_company_data():
             combined_df = pd.concat(combined_dfs, ignore_index=False)
             combined_df.drop(combined_df.index[-1], inplace=True)
             combined_df['Implied Shares'] = (combined_df['marketCap'] / combined_df['close']).round(0)
-            print(combined_df)
+            # print(combined_df)
             # combined_df.to_excel(excel_writer, sheet_name='Daily Data', index=True)
 
 
@@ -273,8 +273,8 @@ def get_company_data():
             # pq.write_table(data_table, filePath)
 
         
-        else:
-            print("No historical market capitalization data available for the specified tickers.")
+        # else:
+            # print("No historical market capitalization data available for the specified tickers.")
 
 
 
