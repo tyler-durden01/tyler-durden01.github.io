@@ -3,6 +3,7 @@ import requests
 from datetime import date, timedelta
 from yahoo_fin.stock_info import *
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
