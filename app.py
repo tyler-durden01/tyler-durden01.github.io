@@ -338,7 +338,7 @@ def get_company_data():
             'earnings_df': earnings_dict,
         }
 
-        return jsonify(data)
+        # return jsonify(data)
 
     return render_template('get_company_data.html', data=data)
 
