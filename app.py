@@ -1,9 +1,8 @@
-# from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, jsonify
 import requests
 from datetime import date, timedelta
 from yahoo_fin.stock_info import *
 import pandas as pd
-from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -12,8 +11,8 @@ def index():
     return render_template('index.html')
 
 # Add routes for HTML pages
-@app.route('/get_company_data')
-
+# @app.route('/get_company_data')
+#.html
 
 # Add a new route to handle the form submission
 @app.route('/get_company_data', methods=['GET', 'POST'])
@@ -334,7 +333,7 @@ def get_company_data():
             'earnings_df': earnings_dict,
         }
 
-        return render_template('get_company_data.html', data=data)
+        return jsonify(data)
 
     return render_template('get_company_data.html', data=None)
 
