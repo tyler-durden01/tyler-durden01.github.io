@@ -338,7 +338,7 @@ def get_company_data():
 
         return jsonify(data)
 
-    return render_template('get_company_data.html', data=data)
+    return render_template('get_company_data.html', data=None)
 
 
 if __name__ == '__main__':
