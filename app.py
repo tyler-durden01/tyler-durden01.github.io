@@ -20,6 +20,8 @@ def index():
 # Add a new route to handle the form submission
 @app.route('/get_company_data', methods=['GET', 'POST'])
 def get_company_data():
+    data = {}
+    
     if request.method == 'POST':
     # Get the user input for the ticker symbol
         ticker = request.form['ticker']
