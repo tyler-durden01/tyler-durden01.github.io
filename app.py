@@ -12,7 +12,7 @@ def index():
     return render_template('index.html')
 
 # Add routes for HTML pages
-@app.route('/get_company_data.html')
+@app.route('/get_company_data')
 
 
 # Add a new route to handle the form submission
