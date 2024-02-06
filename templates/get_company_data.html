@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add a back button linking to the home page -->
+    <a href="/">Back to Home</a>
+    <title>Stock Data</title>
+</head>
+<body>
+    <h1>Stock Data</h1>
+
+    <form method="POST" action="/get_company_data">
+        <label for="ticker">Enter Stock Ticker Symbol:</label>
+        <input type="text" id="ticker" name="ticker" required>
+        <button type="submit">Get Data</button>
+    </form>
+
+
+
+    {% if data %}
+    {% for key, dataframe in data.items() %}
+    <h2>{{ key }}</h2>
+    <table border="1">
+        <tr>
+            <!-- Display column headers dynamically -->
+            {% for column in dataframe[0] %}
+            <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        {% for record in dataframe %}
+        <tr>
+            <!-- Display data for each column dynamically -->
+            {% for column in record %}
+            <td>{{ record[column] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+    {% else %}
+    {% endif %}
+
+
+</body>
+</html>
