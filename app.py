@@ -178,10 +178,10 @@ def get_company_data_clean():
             'operatingIncome': 'Operating Income',
             'netIncome': 'Net Income',
             'freeCashFlow': 'Free Cash Flow',
-            'netCashProvidedByOperatingActivities': 'Net Cash Provided by Operating Activities',
-            'netCashUsedForInvestingActivites': 'Net Cash Used for Investing Activities',
+            'netCashProvidedByOperatingActivities': 'Cash Flow: Operating',
+            'netCashUsedForInvestingActivites': 'Cash Flow: Investing',
             'dividendsPaid': 'Dividends Paid',
-            'netCashUsedProvidedByFinancingActivities': 'Net Cash Used Provided by Financing Activities',
+            'netCashUsedProvidedByFinancingActivities': 'Cash Flow: Financing',
             'netChangeInCash': 'Net Change in Cash',
             'cashAndCashEquivalents': 'Cash and Cash Equivalents',
             'totalCurrentAssets': 'Total Current Assets',
@@ -194,7 +194,7 @@ def get_company_data_clean():
 
 
 
-        horizontal_df = merged_df.div(merged_df['revenue'], axis=0)
+        horizontal_df = merged_df.div(merged_df['Revenue'], axis=0)
         horizontal_df = horizontal_df.round(3)
         # print(horizontal_df)
 
