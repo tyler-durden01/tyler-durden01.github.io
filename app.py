@@ -335,7 +335,7 @@ def get_company_data_clean():
         # earnings_df = earnings_df.fillna(value='0', inplace=True)
 
 
-        merged_df = merged_df.applymap(lambda x: '(:,.0f)'.format(x))
+        merged_df = merged_df.map('(:,.0f)'.format)
 
         # Convert DataFrames to dictionaries
         merged_dict = merged_df.reset_index().to_dict(orient='records')
