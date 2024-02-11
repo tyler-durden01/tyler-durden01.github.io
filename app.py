@@ -156,6 +156,27 @@ def get_company_data_clean():
         merged_df = pd.merge(income_df, cash_flow_df, on='date', how='inner')
         merged_df = pd.merge(merged_df, balance_sheet_df, on='date', how='inner')
 
+        merged_df = merged_df.rename(columns={
+            'date': 'Date',
+            'revenue': 'Revenue',
+            'grossProfit': 'Gross Profit',
+            'operatingIncome': 'Operating Income',
+            'netIncome': 'Net Income',
+            'freeCashFlow': 'Free Cash Flow',
+            'netCashProvidedByOperatingActivities': 'Net Cash Provided by Operating Activities',
+            'netCashUsedForInvestingActivites': 'Net Cash Used for Investing Activities',
+            'dividendsPaid': 'Dividends Paid',
+            'netCashUsedProvidedByFinancingActivities': 'Net Cash Used Provided by Financing Activities',
+            'netChangeInCash': 'Net Change in Cash',
+            'cashAndCashEquivalents': 'Cash and Cash Equivalents',
+            'totalCurrentAssets': 'Total Current Assets',
+            'totalAssets': 'Total Assets',
+            'totalCurrentLiabilities': 'Total Current Liabilities',
+            'longTermDebt': 'Long Term Debt',
+            'totalLiabilities': 'Total Liabilities',
+            'totalStockholdersEquity': 'Total Stockholders Equity'
+        })
+
 
         # Convert numerical columns to numeric data types
         numeric_columns = merged_df.columns.drop('date')
