@@ -156,6 +156,21 @@ def get_company_data_clean():
         merged_df = pd.merge(income_df, cash_flow_df, on='date', how='inner')
         merged_df = pd.merge(merged_df, balance_sheet_df, on='date', how='inner')
 
+
+        # Convert numerical columns to numeric data types
+        numeric_columns = merged_df.columns.drop('date')
+        merged_df[numeric_columns] = merged_df[numeric_columns].apply(pd.to_numeric, errors='coerce')
+        merged_df.set_index('date', inplace=True)
+        merged_df = merged_df / 1000000
+        merged_df = merged_df.round(0)
+        # .applymap('{:,.0f}'.format)
+        # Convert 'date' column to datetime
+        # merged_df['date'] = pd.to_datetime(merged_df['date'])
+        # Print the final merged DataFrame
+        # print(merged_df)
+
+
+
         merged_df = merged_df.rename(columns={
             'date': 'Date',
             'revenue': 'Revenue',
@@ -178,17 +193,6 @@ def get_company_data_clean():
         })
 
 
-        # Convert numerical columns to numeric data types
-        numeric_columns = merged_df.columns.drop('date')
-        merged_df[numeric_columns] = merged_df[numeric_columns].apply(pd.to_numeric, errors='coerce')
-        merged_df.set_index('date', inplace=True)
-        merged_df = merged_df / 1000000
-        merged_df = merged_df.round(0)
-        # .applymap('{:,.0f}'.format)
-        # Convert 'date' column to datetime
-        # merged_df['date'] = pd.to_datetime(merged_df['date'])
-        # Print the final merged DataFrame
-        # print(merged_df)
 
         horizontal_df = merged_df.div(merged_df['revenue'], axis=0)
         horizontal_df = horizontal_df.round(3)
