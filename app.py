@@ -152,7 +152,7 @@ def get_company_data_clean():
 
 
 
-        merged_df = merged_df.rename_axis('Date')
+        # merged_df = merged_df.rename_axis('Date')
 
         # Merge the two DataFrames on the 'date' column to align the data
         merged_df = pd.merge(income_df, cash_flow_df, on='Date', how='inner')
