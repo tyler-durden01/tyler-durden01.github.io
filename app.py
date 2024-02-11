@@ -161,6 +161,7 @@ def get_company_data_clean():
         numeric_columns = merged_df.columns.drop('date')
         merged_df[numeric_columns] = merged_df[numeric_columns].apply(pd.to_numeric, errors='coerce')
         merged_df.set_index('date', inplace=True)
+        merged_df.rename_axis('Date')
         merged_df = merged_df / 1000000
         merged_df = merged_df.round(0)
         # .applymap('{:,.0f}'.format)
