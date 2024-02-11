@@ -351,16 +351,16 @@ def get_company_data_clean():
         
         # Assuming you have processed data in dictionaries
         data = {
-            'merged_df': merged_dict,
-            'horizontal_df': horizontal_dict,
-            'quarterly_pct_change_df': quarterly_pct_change_dict,
-            'yearly_pct_change_df': yearly_pct_change_dict,
-            'annual_df': annual_dict,
-            'annual_pct_change_df': annual_pct_change_dict,
-            'ttm_df': ttm_dict,
-            'ttm_df_quarterly_pct_change': ttm_quarterly_pct_change_dict,
-            'ttm_df_yearly_pct_change': ttm_yearly_pct_change_dict,
-            'earnings_df': earnings_dict,
+            'Quarterly Breakdown': merged_dict,
+            '% Change (Quarter/Quarter)': quarterly_pct_change_dict,
+            '% Change (Year/Year)': yearly_pct_change_dict,
+            'Horizontal Analysis': horizontal_dict,
+            'Annual Breakdown': annual_dict,
+            '% Change (Annual)': annual_pct_change_dict,
+            'TTM: Quarterly Breakdown': ttm_dict,
+            'TTM: % Change (Quarter/Quarter)': ttm_quarterly_pct_change_dict,
+            'TTM: % Change (Year/Year)': ttm_yearly_pct_change_dict,
+            'Earnings Dates': earnings_dict,
         }
 
         # return jsonify(data)
