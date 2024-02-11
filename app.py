@@ -172,7 +172,7 @@ def get_company_data_clean():
 
 
         merged_df = merged_df.rename(columns={
-            'date': 'Date',
+            # 'date': 'Date',
             'revenue': 'Revenue',
             'grossProfit': 'Gross Profit',
             'operatingIncome': 'Operating Income',
