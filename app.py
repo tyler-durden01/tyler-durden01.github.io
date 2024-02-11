@@ -150,6 +150,47 @@ def get_company_data_clean():
             print("Failed to retrieve data.")
 
 
+        
+
+
+
+
+        # Filter and select the relevant columns for income statement
+        income_df = income_df.rename(columns={
+            'date': 'Date',
+            'revenue': 'Revenue',
+            'grossProfit': 'Gross Profit',
+            'operatingIncome': 'Operating Income',
+            'netIncome': 'Net Income'
+        })
+
+        # Filter and select the relevant columns for cash flow statement
+        cash_flow_df = cash_flow_df.rename(columns={
+            'date': 'Date',
+            'freeCashFlow': 'Free Cash Flow',
+            'netCashProvidedByOperatingActivities': 'Net Cash Provided by Operating Activities',
+            'netCashUsedForInvestingActivites': 'Net Cash Used for Investing Activities',
+            'dividendsPaid': 'Dividends Paid',
+            'netCashUsedProvidedByFinancingActivities': 'Net Cash Used Provided by Financing Activities',
+            'netChangeInCash': 'Net Change in Cash'
+        })
+
+        balance_sheet_df = balance_sheet_df.rename(columns={
+            'date': 'Date',
+            'cashAndCashEquivalents': 'Cash and Cash Equivalents',
+            'totalCurrentAssets': 'Total Current Assets',
+            'totalAssets': 'Total Assets',
+            'totalCurrentLiabilities': 'Total Current Liabilities',
+            'longTermDebt': 'Long Term Debt',
+            'totalLiabilities': 'Total Liabilities',
+            'totalStockholdersEquity': 'Total Stockholders Equity',
+        })
+
+
+
+
+
+
         # Merge the two DataFrames on the 'date' column to align the data
         merged_df = pd.merge(income_df, cash_flow_df, on='date', how='inner')
         merged_df = pd.merge(merged_df, balance_sheet_df, on='date', how='inner')
@@ -302,40 +343,6 @@ def get_company_data_clean():
         # ttm_quarterly_pct_change = ttm_quarterly_pct_change.fillna(value='0', inplace=True)
         # ttm_yearly_pct_change = ttm_yearly_pct_change.fillna(value='0', inplace=True)
         # earnings_df = earnings_df.fillna(value='0', inplace=True)
-
-
-
-
-        # Filter and select the relevant columns for income statement
-        income_df = income_df.rename(columns={
-            'date': 'Date',
-            'revenue': 'Revenue',
-            'grossProfit': 'Gross Profit',
-            'operatingIncome': 'Operating Income',
-            'netIncome': 'Net Income'
-        })
-
-        # Filter and select the relevant columns for cash flow statement
-        cash_flow_df = cash_flow_df.rename(columns={
-            'date': 'Date',
-            'freeCashFlow': 'Free Cash Flow',
-            'netCashProvidedByOperatingActivities': 'Net Cash Provided by Operating Activities',
-            'netCashUsedForInvestingActivites': 'Net Cash Used for Investing Activities',
-            'dividendsPaid': 'Dividends Paid',
-            'netCashUsedProvidedByFinancingActivities': 'Net Cash Used Provided by Financing Activities',
-            'netChangeInCash': 'Net Change in Cash'
-        })
-
-        balance_sheet_df = balance_sheet_df.rename(columns={
-            'date': 'Date',
-            'cashAndCashEquivalents': 'Cash and Cash Equivalents',
-            'totalCurrentAssets': 'Total Current Assets',
-            'totalAssets': 'Total Assets',
-            'totalCurrentLiabilities': 'Total Current Liabilities',
-            'longTermDebt': 'Long Term Debt',
-            'totalLiabilities': 'Total Liabilities',
-            'totalStockholdersEquity': 'Total Stockholders Equity',
-        })
 
 
 
