@@ -716,6 +716,30 @@ def get_company_data():
 
 
 
+
+# @app.route('/economic_data', methods=['GET', 'POST'])
+# def get_economic_data():
+
+
+
+
+
+# @app.route('/market_data', methods=['GET', 'POST'])
+# def get_market_data():
+    
+
+
+
+
+@app.route('/blockchain_data', methods=['GET', 'POST'])
+# @app.route('/blockchain_data')
+def get_blockchain_data():
+    return render_template('get_blockchain_data.html')
+
+
+
+
+
 if __name__ == '__main__':
     # app.run(debug=True)
     app.run(host='0.0.0.0', port=port)
