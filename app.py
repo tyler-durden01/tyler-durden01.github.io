@@ -165,7 +165,7 @@ def get_company_data_clean():
         merged_df.set_index('date', inplace=True)
         merged_df = merged_df / 1000000
         merged_df = merged_df.round(0)
-        merged_df = merged_df.applymap(lambda x: '(:,.0f)'.format(x))
+        
         # .applymap('{:,.0f}'.format)
         # Convert 'date' column to datetime
         # merged_df['date'] = pd.to_datetime(merged_df['date'])
@@ -199,6 +199,7 @@ def get_company_data_clean():
 
         horizontal_df = merged_df.div(merged_df['Revenue'], axis=0)
         horizontal_df = horizontal_df.round(3)
+        # horizontal_df = horizontal_df.applymap(lambda x: '{:.1%}'.format(x))
         # print(horizontal_df)
 
         # Calculate the % changes from the next period (descending order)
@@ -334,7 +335,7 @@ def get_company_data_clean():
         # earnings_df = earnings_df.fillna(value='0', inplace=True)
 
 
-
+        merged_df = merged_df.applymap(lambda x: '(:,.0f)'.format(x))
 
         # Convert DataFrames to dictionaries
         merged_dict = merged_df.reset_index().to_dict(orient='records')
