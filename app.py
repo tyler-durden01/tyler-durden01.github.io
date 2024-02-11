@@ -165,6 +165,7 @@ def get_company_data_clean():
         merged_df.set_index('date', inplace=True)
         merged_df = merged_df / 1000000
         merged_df = merged_df.round(0)
+        merged_df = merged_df.applymap(lambda x: '(:,.0f)'.format(x))
         # .applymap('{:,.0f}'.format)
         # Convert 'date' column to datetime
         # merged_df['date'] = pd.to_datetime(merged_df['date'])
