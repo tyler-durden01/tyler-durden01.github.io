@@ -152,16 +152,17 @@ def get_company_data_clean():
 
 
 
+        merged_df = merged_df.rename_axis('Date')
+
         # Merge the two DataFrames on the 'date' column to align the data
-        merged_df = pd.merge(income_df, cash_flow_df, on='date', how='inner')
-        merged_df = pd.merge(merged_df, balance_sheet_df, on='date', how='inner')
+        merged_df = pd.merge(income_df, cash_flow_df, on='Date', how='inner')
+        merged_df = pd.merge(merged_df, balance_sheet_df, on='Date', how='inner')
 
 
         # Convert numerical columns to numeric data types
-        numeric_columns = merged_df.columns.drop('date')
+        numeric_columns = merged_df.columns.drop('Date')
         merged_df[numeric_columns] = merged_df[numeric_columns].apply(pd.to_numeric, errors='coerce')
-        merged_df.set_index('date', inplace=True)
-        merged_df.rename_axis('Date')
+        merged_df.set_index('Date', inplace=True)
         merged_df = merged_df / 1000000
         merged_df = merged_df.round(0)
         # .applymap('{:,.0f}'.format)
