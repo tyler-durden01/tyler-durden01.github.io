@@ -335,14 +335,24 @@ def get_company_data_clean():
         # earnings_df = earnings_df.fillna(value='0', inplace=True)
 
 
-        # merged_df = merged_df.applymap(lambda x: '{:.0f}'.format(x))
         merged_df = merged_df.applymap(lambda x: '{:,.0f}'.format(x))
+        quarterly_pct_change_df = quarterly_pct_change_df.applymap(lambda x: '{:,.1%}'.format(x))
+        yearly_pct_change_df = yearly_pct_change_df.applymap(lambda x: '{:,.1%}'.format(x)) 
+        horizontal_df = horizontal_df.applymap(lambda x: '{:,.1%}'.format(x))
+        annual_df = annual_df.applymap(lambda x: '{:,.0f}'.format(x))
+        annual_pct_change_df = annual_pct_change_df.applymap(lambda x: '{:,.1%}'.format(x))
+        ttm_df = ttm_df.applymap(lambda x: '{:,.0f}'.format(x))
+        ttm_df_quarterly_pct_change = ttm_df_quarterly_pct_change.applymap(lambda x: '{:,.1%}'.format(x))
+        ttm_df_yearly_pct_change = ttm_df_yearly_pct_change.applymap(lambda x: '{:,.1%}'.format(x))
+
+
+        # merged_df = merged_df.apply(lambda x: x.map('{:,.0f}'.format))
 
         # Convert DataFrames to dictionaries
         merged_dict = merged_df.reset_index().to_dict(orient='records')
-        horizontal_dict = horizontal_df.reset_index().to_dict(orient='records')
         quarterly_pct_change_dict = quarterly_pct_change_df.reset_index().to_dict(orient='records')
         yearly_pct_change_dict = yearly_pct_change_df.reset_index().to_dict(orient='records')
+        horizontal_dict = horizontal_df.reset_index().to_dict(orient='records')
         annual_dict = annual_df.reset_index().to_dict(orient='records')
         annual_pct_change_dict = annual_pct_change_df.reset_index().to_dict(orient='records')
         ttm_dict = ttm_df.reset_index().to_dict(orient='records')
