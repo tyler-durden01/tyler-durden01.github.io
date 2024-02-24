@@ -743,6 +743,12 @@ def polygon():
     return render_template('Polygon.html')
 
 
+@app.route('/LiquidityPoolAPRs', methods=['GET'])
+def polygon():
+    # This serves the 'Polygon.html' page
+    return render_template('LiquidityPoolAPRs.html')
+
+
 if __name__ == '__main__':
     # app.run(debug=True)
     app.run(host='0.0.0.0', port=port)
