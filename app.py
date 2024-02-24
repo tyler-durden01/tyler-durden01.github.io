@@ -737,9 +737,9 @@ def get_blockchain_data():
     return render_template('get_blockchain_data.html')
 
 
-@app.route('/blockchain_data.html/Polygon.html', methods=['GET', 'POST'])
-# @app.route('/blockchain_data')
-def stable_pools_Polygon():
+@app.route('/Polygon', methods=['GET'])
+def polygon():
+    # This serves the 'Polygon.html' page
     return render_template('Polygon.html')
 
 
