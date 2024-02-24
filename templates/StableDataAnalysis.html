@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Data Analysis</title>
+  </head>
+  <body>
+    <h1>Data Analysis</h1>
+
+    <button id="05usdc-usdt-button">.05 USDC-USDT</button>
+    <button id="05dai-usdc-button">.05 DAI-USDC</button>
+    <button id="01usdc-usdt-button">.01 USDC-USDT</button>
+    <button id="01dai-mimatic-button">.01 DAI-miMATIC</button>
+    <button id="01dai-usdc-button">.01 DAI-USDC</button>
+    <button id="01dai-usdt-button">.01 DAI-USDT</button>
+    <button id="01usdc-busd-button">.01 USDC-BUSD</button>
+
+    <div id="chart-container" style="display: none;"></div>
+    <div id="formulas-container" style="display: none; text-align: center;"></div>
+    <script>
+      const usdcUsdtButton05 = document.getElementById("05usdc-usdt-button");
+      const daiUsdcButton05 = document.getElementById("05dai-usdc-button");
+      const daimimaticButton01 = document.getElementById("01dai-mimatic-button");
+      const daiUsdcButton01 = document.getElementById("01dai-usdc-button");
+      const daiUsdtButton01 = document.getElementById("01dai-usdt-button");
+      const usdcBusdButton01 = document.getElementById("01usdc-busd-button");
+      const usdcUsdtButton01 = document.getElementById("01usdc-usdt-button");
+
+      const chartContainer = document.getElementById("chart-container");
+      const formulasContainer = document.getElementById("formulas-container");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+      usdcUsdtButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_dataChart00') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    daiUsdcButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_dataChart01') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+daimimaticButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_dataChart02') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+daiUsdcButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_dataChart03') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+daiUsdtButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_dataChart04') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+usdcBusdButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_dataChart05') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+usdcUsdtButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_dataChart06') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+
+</body>
+</html>

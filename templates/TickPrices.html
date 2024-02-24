@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tick Prices</title>
+  </head>
+  <body>
+    <h1>Tick Prices</h1>
+
+    <button id="05usdc-usdt-button">.05 USDC-USDT</button>
+    <button id="05dai-usdc-button">.05 DAI-USDC</button>
+    <button id="01usdc-usdt-button">.01 USDC-USDT</button>
+    <button id="01dai-mimatic-button">.01 DAI-miMATIC</button>
+    <button id="01dai-usdc-button">.01 DAI-USDC</button>
+    <button id="01dai-usdt-button">.01 DAI-USDT</button>
+    <button id="01usdc-busd-button">.01 USDC-BUSD</button>
+
+
+    <div id="chart-container" style="display: none;"></div>
+    <div id="formulas-container" style="display: none; text-align: center;"></div>
+    <script>
+      const usdcUsdtButton05 = document.getElementById("05usdc-usdt-button");
+      const daiUsdcButton05 = document.getElementById("05dai-usdc-button");
+      const daimimaticButton01 = document.getElementById("01dai-mimatic-button");
+      const daiUsdcButton01 = document.getElementById("01dai-usdc-button");
+      const daiUsdtButton01 = document.getElementById("01dai-usdt-button");
+      const usdcUsdtButton01 = document.getElementById("01usdc-usdt-button");
+      const usdcbusdButton01 = document.getElementById("01usdc-busd-button");
+
+      const chartContainer = document.getElementById("chart-container");
+      const formulasContainer = document.getElementById("formulas-container");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+      usdcUsdtButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_tickprices6') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    daiUsdcButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_tickprices5') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+daimimaticButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_tickprices0') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+daiUsdcButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_tickprices1') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+daiUsdtButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_tickprices2') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+usdcUsdtButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_tickprices4') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+usdcbusdButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+            chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_tickprices3') }}" style="width: 100%; height: 1500px;"></iframe>
+            `
+            formulasContainer.style.display = 'block';
+            chartContainer.style.display = 'block';
+
+        } else {
+            chartContainer.style.display = "none";
+            formulasContainer.style.display = 'none';
+    }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+
+</body>
+</html>
