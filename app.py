@@ -744,7 +744,7 @@ def polygon():
 
 
 @app.route('/LiquidityPoolAPRs', methods=['GET'])
-def polygon():
+def LiquidityPoolAPRs():
     # This serves the 'Polygon.html' page
     return render_template('LiquidityPoolAPRs.html')
 
