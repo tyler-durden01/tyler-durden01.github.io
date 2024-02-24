@@ -737,7 +737,10 @@ def get_blockchain_data():
     return render_template('get_blockchain_data.html')
 
 
-
+@app.route('/blockchain_data.html/Polygon.html', methods=['GET', 'POST'])
+# @app.route('/blockchain_data')
+def stable_pools_Polygon():
+    return render_template('Polygon.html')
 
 
 if __name__ == '__main__':
