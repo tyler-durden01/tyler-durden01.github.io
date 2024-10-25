@@ -1,0 +1,131 @@
+# python src/Vista.py
+
+
+# I am really missing something with all these prints, etc.
+# keep working to make this all dynamic and flexible
+# from there, DCF, betas, cost of debts, etc can be done and then can more easily build on top of this again.
+
+# Earnings_reports should have dates clean up to be a short date but still in datetime format
+# Market caps df - still need to figure out if i even need this to begin with, but even then, the dates need to be cleaned up 
+# Daily prices data needs to be cleaned up
+# relative valuations: dates need to be cleaned
+# make a decision about the index/axis. are they needed? are 'symbol' columns needed? 
+# Relative valuations: don't even get into the cleaning of negatives
+# financial statements: the inf values, and the rediculuously unneccesaary numeric values such as balance sheet items in ttm
+# shares data is a huge issue for later in time
+# performance data (prices and market caps; peaks/troughs)
+# that will be more complicated and for later
+# so previous notes in other files; see alternative notes files in other txt files
+# company revenue segmentation
+# cost of debt/debt outstanding
+# addional API endpoints just for the specfic of companies
+# % change column for the employees data; maybe averages and weighted averages for each quarter? 
+# from there, can go with industry analysis, etf analysis, earnings reports, options, economic data, blockchain data
+# making this program capable of taking on multiple tickers, and looping with error messages that pop up as needed
+# also should clean the revenue figures, for example in the revenue segmentation files and also the financial data, for that matter, then the rounding and millinos formatting etc should  be set as a parameter in the config
+# Should have a separate module that makes the Excel file readable; ie figures in millions
+# Get employee data API query shows just how easy it is to get and index the SEC edgar database. see how I can maybe even create my own API, as I don't think it's all that difficult
+# so we fonud out the the marketcap data from the api is what is used in the realtivevluations
+# note the cleaning of the reset index in relative valuations in order to get the fixing down
+# well with market caps now cleaned, maybe it is useless, afterall
+# daily_data_df might be very, very messy
+# cleaning left off at daily_data_df
+# configure these for production and deployment environments
+# config file really needs to be updated with parameters; or at least, paramters for respective files should be at the top of the files
+# Note that in CAPM.py, the data is just getting refetched from yfiannce. should probably reference daily data in order ot get continuity 
+# Wait never mind, that isn't right
+# Do these all have to be functions? Can I just get the output that the program outputs? Like, from a for loop? 
+# FCF breakdown to see where it is being elevated
+# As reported: is there a difference? what adjustments are made?
+# So much to consider with the balance sheet metrics -- include ST investments? 
+# why the jump in implied shares outstanding *just befoer* earnings report? (1-2 days before)
+# I am not getting the market caps from yahoo. but i am getting the prices. so does yahoo finance provide the market caps? 
+
+
+# Daily prices: dates still not formatted
+# market_caps_df: seems jjust outright unneccessary
+# clean up the prints and the commented out stuff 
+# balancesheetmetrcis: the manipulation done in relativeValuations is returning just the ticker sumbol
+# can maybe clean up the reset index and sort date values for the data export
+# I swear there is some funny business going down here. GetFinancialStatementData with the column errors, and now the BAlanceSheet MEtrics with the dates errors
+# Can also now get into the weeds of the corporate finance math, and get things down better
+
+
+2024-10-08 (1)
+# with these analysis files, will eventually have to clean them so that they only include the columns I truly need 
+
+still missing CAGRs; 3y, 5y
+next: get multiples from the employees data
+would be absolutely fantastic to see where the employee headcount is allocated to, such as SG&A or R&D 
+software development: note that I need to get to a point where I essentially duplicate vista.py to run only one of the modules, or both
+there is so much overlap at the moment with all this data
+
+
+2024-10-08 (2)
+employees: revenue per employee
+CONSIDER: for relative analysis, omit the negative values, and go from top down. so p/s, p/ev, and see where that goes until the date that p/fcf is positive, 
+how can I analyze the derivivaties/ the spreads here of the trends? at what point is a p/s ratio low once p/fcf is positive?
+should also get the histroical data for a company's historic CAPM, cost of debt, WACC, where the US10Y was at 
+yields, such as dividend yield, fcf yieled, ROE, ROIC
+
+
+2024-10-09
+
+So here's a learning lesson. BalanceSheetMetrics and RelativeValuations: what I changed in the first, it applies for the second, and the changes I made in the second, it still sticks for the output.
+never mind. I realized i didnt do df = df.set_index()
+
+consider for wacc: either stick to the way I have it now, or let a user input it. would make sense down the line for automated decision/calcultion, but might make some sense later on to use user input
+notice that onedrive syncing issues might be the causes of problems that don't make occassional sense
+Should revisit CAPM at some point, make sure the calcultions are actually going as they should
+
+Wait a minute...should daily changes really be based off the market caps? and not the share prices? 
+
+Remember the framework of the 5 PELLR
+might just need to combine relative valuations into a massive mesh
+merge seems risky. I might have to change them to concat
+I am also getting to the point where I am stacking individual python programs again. i will have to come to a point where I will need to do maintence
+
+KEYS: RelativeValuations is getting a little conjested, might have to consider how to go about that down the line
+Financial statement analysis will have to go by the financial statements df, ttm_df, and not the daily data or market caps data. i am getting to a place that i dont need the daily dates and market cap data to get where I want
+really need to find a way to make the column parameters more fluid and flexible between BalanceSheetMetrics and RelativeValuations
+
+
+CAPM betas might be completely off becuasee they are not based off the % changes/% movements
+We're getting there. With the software engineering part of things. modules, libraries, config, app.py, _main_(), multiple vista.py, selective invoktion of functions; separation of querying the api key, and processing the data. or when to keep them together.
+
+# notice how all seem to should go in descending order
+
+# Daily data is getting to the point of stupidity, too many columns, might just need another program for the different libraries for analysis
+# Can I just go straight into AI? Can I just pull a ton of data and ask it to analyze? 
+
+
+2024-10-16
+
+So, clearly, there are issues with the rev segmentation. the api doesn't even have the data half the time. This is a problem.
+
+
+2024-10-17
+
+Aparanetly, splits take more than 2 weeks for FMP to change for the market cap data
+Apparently, employee data only exists half the time
+apparently, revenue segmentation data is entirely hit or miss
+This is not sustainable, and the data source will need to changed. At some point. 
+might be a flaw in the dcf_simple where it doesn't accuont for the ttm shares, or doesn't pull from the dataset for an accurate calcultion
+the inf data figures need to be cleaned
+
+
+2024-10-23
+1.clean out the inf values for the calcultions
+    while at it, good to add the date ranges to be utilized 
+    do I need to query stocksplits? 
+    what about companies (like arm) that have major private owners like softbank still? 
+    still need to do NTM (realized) and also run rate for just a quarter TTM (e.g., first profitable quarter)
+    still need to understand the blank values for, also. notatte and quantify how many days are missing from the dataset population
+    append the statistcal function to others in the dataframes; and also include the datapoint observations (sample); observations (population)
+2. yahoo finance can't work with SIKs; might just have to convert to FMC for that purpose 
+3. market caps data doesn't seem to work with it, either
+4. how can I get all of the comps, and in their siks? 
+5. Comparing and pulling the data from the excel sheets in order to compare to s and p and nasdaq and us10y
+** Better yet, can I just go ahead and replace FMC with SEC? or at least, for the CIK indexing? 
+- and then there's the issue of the quadruppled rows for the CIK entered
+- sic for industry???
