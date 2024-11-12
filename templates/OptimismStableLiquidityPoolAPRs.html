@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Liquidity Pool Data</title>
+  </head>
+  <body>
+    <h1>Liquidity Pool Data</h1>
+
+
+    <button id="01dai-usdc-button">.01 DAI-USDC</button>
+    <button id="01usdc-sUSD-button">.01 USDC-sUSD</button>
+    <button id="01usdc-usdt-button">.01 USDC-USDT</button>
+    <button id="05dai-usdt-button">.05 DAI-USDT</button>
+    <button id="05usdc-sUSD-button">.05 USDC-sUSD</button>
+    <button id="05dai-usdc-button">.05 DAI-USDC</button>
+    <button id="05frax-usdc-button">.05 FRAX-USDC</button>
+
+
+    <div id="chart-container" style="display: none;"></div>
+    <div id="formulas-container" style="display: none; text-align: center;"></div>
+    <script>
+      const daiUsdcButton01 = document.getElementById("01dai-usdc-button");
+      const usdcSusdButton01 = document.getElementById("01usdc-sUSD-button");
+      const usdcUsdtButton01 = document.getElementById("01usdc-usdt-button");
+      const daiUsdtButton05 = document.getElementById("05dai-usdt-button");
+      const usdcSusdButton05 = document.getElementById("05usdc-sUSD-button");
+      const daiUsdcButton05 = document.getElementById("05dai-usdc-button");
+      const fraxUsdcButton05 = document.getElementById("05frax-usdc-button");
+
+      const chartContainer = document.getElementById("chart-container");
+      const formulasContainer = document.getElementById("formulas-container");
+
+      daiUsdcButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+          chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_chartOP') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chartOP1') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chartOP2') }}" style="width: 100%; height: 500px;"></iframe>
+            `;
+            chartContainer.style.display = "block";
+
+          // Load data and calculate average volume
+          const request = new XMLHttpRequest();
+          request.open('GET', '/data1');
+          request.responseType = 'text';
+          request.send();
+          request.onload = function() {
+            const avgVolume = Number(request.response);
+
+            // Display average volume
+            formulasContainer.innerHTML = 'Average Daily Volume: $' + avgVolume.toFixed(2);
+            formulasContainer.style.display = 'block';
+          };
+
+          const request0 = new XMLHttpRequest();
+          request0.open('GET', '/data0');
+          request0.responseType = 'text';
+          request0.send();
+          request0.onload = function() {
+            const avgVolume0 = Number(request0.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>7 Day Average Daily Volume: $' + avgVolume0.toFixed(2);
+          };
+
+          const request4 = new XMLHttpRequest();
+          request4.open('GET', '/data01');
+          request4.responseType = 'text';
+          request4.send();
+          request4.onload = function() {
+            const avgVolume4 = Number(request4.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>30 Day Average Daily Volume: $' + avgVolume4.toFixed(2);
+          };
+
+          const request2 = new XMLHttpRequest();
+          request2.open('GET', '/data2');
+          request2.responseType = 'text';
+          request2.send();
+          request2.onload = function() {
+            const avgVolume2 = Number(request2.response);
+
+            // Display average daily APR
+            formulasContainer.innerHTML += '<br>Average Daily APR: ' + avgVolume2.toFixed(4) + "%";
+          };
+
+          const request3 = new XMLHttpRequest();
+          request3.open('GET', '/data3');
+          request3.responseType = 'text';
+          request3.send();
+          request3.onload = function() {
+            const avgVolume3 = Number(request3.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>7 Day Average Daily APR: ' + avgVolume3.toFixed(4) + "%";
+          };
+
+          const request5 = new XMLHttpRequest();
+          request5.open('GET', '/data4');
+          request5.responseType = 'text';
+          request5.send();
+          request5.onload = function() {
+            const avgVolume5 = Number(request5.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>30 Day Average Daily APR: ' + avgVolume5.toFixed(4) + "%";
+          };
+
+        } else {
+          chartContainer.style.display = "none";
+          formulasContainer.style.display = 'none';
+        }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+usdcSusdButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+          chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_chart10') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart30') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart20') }}" style="width: 100%; height: 500px;"></iframe>
+            `;
+            chartContainer.style.display = "block";
+
+          // Load data and calculate average volume
+          const request = new XMLHttpRequest();
+          request.open('GET', '/data10');
+          request.responseType = 'text';
+          request.send();
+          request.onload = function() {
+            const avgVolume = Number(request.response);
+
+            // Display average volume
+            formulasContainer.innerHTML = 'Average Daily Volume: $' + avgVolume.toFixed(2);
+            formulasContainer.style.display = 'block';
+          };
+
+          const request0 = new XMLHttpRequest();
+          request0.open('GET', '/data00');
+          request0.responseType = 'text';
+          request0.send();
+          request0.onload = function() {
+            const avgVolume0 = Number(request0.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>7 Day Average Daily Volume: $' + avgVolume0.toFixed(2);
+          };
+
+          const request4 = new XMLHttpRequest();
+          request4.open('GET', '/data010');
+          request4.responseType = 'text';
+          request4.send();
+          request4.onload = function() {
+            const avgVolume4 = Number(request4.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>30 Day Average Daily Volume: $' + avgVolume4.toFixed(2);
+          };
+
+          const request2 = new XMLHttpRequest();
+          request2.open('GET', '/data20');
+          request2.responseType = 'text';
+          request2.send();
+          request2.onload = function() {
+            const avgVolume2 = Number(request2.response);
+
+            // Display average daily APR
+            formulasContainer.innerHTML += '<br>Average Daily APR: ' + avgVolume2.toFixed(4) + "%";
+          };
+
+          const request3 = new XMLHttpRequest();
+          request3.open('GET', '/data30');
+          request3.responseType = 'text';
+          request3.send();
+          request3.onload = function() {
+            const avgVolume3 = Number(request3.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>7 Day Average Daily APR: ' + avgVolume3.toFixed(4) + "%";
+          };
+
+          const request5 = new XMLHttpRequest();
+          request5.open('GET', '/data40');
+          request5.responseType = 'text';
+          request5.send();
+          request5.onload = function() {
+            const avgVolume5 = Number(request5.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>30 Day Average Daily APR: ' + avgVolume5.toFixed(4) + "%";
+          };
+
+        } else {
+          chartContainer.style.display = "none";
+          formulasContainer.style.display = 'none';
+        }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      usdcUsdtButton01.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+          chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_chart100') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart300') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart200') }}" style="width: 100%; height: 500px;"></iframe>
+            `;
+            chartContainer.style.display = "block";
+
+          // Load data and calculate average volume
+          const request = new XMLHttpRequest();
+          request.open('GET', '/data100');
+          request.responseType = 'text';
+          request.send();
+          request.onload = function() {
+            const avgVolume = Number(request.response);
+
+            // Display average volume
+            formulasContainer.innerHTML = 'Average Daily Volume: $' + avgVolume.toFixed(2);
+            formulasContainer.style.display = 'block';
+          };
+
+          const request0 = new XMLHttpRequest();
+          request0.open('GET', '/data000');
+          request0.responseType = 'text';
+          request0.send();
+          request0.onload = function() {
+            const avgVolume0 = Number(request0.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>7 Day Average Daily Volume: $' + avgVolume0.toFixed(2);
+          };
+
+          const request4 = new XMLHttpRequest();
+          request4.open('GET', '/data0100');
+          request4.responseType = 'text';
+          request4.send();
+          request4.onload = function() {
+            const avgVolume4 = Number(request4.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>30 Day Average Daily Volume: $' + avgVolume4.toFixed(2);
+          };
+
+          const request2 = new XMLHttpRequest();
+          request2.open('GET', '/data200');
+          request2.responseType = 'text';
+          request2.send();
+          request2.onload = function() {
+            const avgVolume2 = Number(request2.response);
+
+            // Display average daily APR
+            formulasContainer.innerHTML += '<br>Average Daily APR: ' + avgVolume2.toFixed(4) + "%";
+          };
+
+          const request3 = new XMLHttpRequest();
+          request3.open('GET', '/data300');
+          request3.responseType = 'text';
+          request3.send();
+          request3.onload = function() {
+            const avgVolume3 = Number(request3.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>7 Day Average Daily APR: ' + avgVolume3.toFixed(4) + "%";
+          };
+
+          const request5 = new XMLHttpRequest();
+          request5.open('GET', '/data400');
+          request5.responseType = 'text';
+          request5.send();
+          request5.onload = function() {
+            const avgVolume5 = Number(request5.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>30 Day Average Daily APR: ' + avgVolume5.toFixed(4) + "%";
+          };
+
+        } else {
+          chartContainer.style.display = "none";
+          formulasContainer.style.display = 'none';
+        }
+      });       
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+daiUsdtButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+          chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_chart1000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart3000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart2000') }}" style="width: 100%; height: 500px;"></iframe>
+            `;
+            chartContainer.style.display = "block";
+
+          // Load data and calculate average volume
+          const request = new XMLHttpRequest();
+          request.open('GET', '/data1000');
+          request.responseType = 'text';
+          request.send();
+          request.onload = function() {
+            const avgVolume = Number(request.response);
+
+            // Display average volume
+            formulasContainer.innerHTML = 'Average Daily Volume: $' + avgVolume.toFixed(2);
+            formulasContainer.style.display = 'block';
+          };
+
+          const request0 = new XMLHttpRequest();
+          request0.open('GET', '/data0000');
+          request0.responseType = 'text';
+          request0.send();
+          request0.onload = function() {
+            const avgVolume0 = Number(request0.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>7 Day Average Daily Volume: $' + avgVolume0.toFixed(2);
+          };
+
+          const request4 = new XMLHttpRequest();
+          request4.open('GET', '/data01000');
+          request4.responseType = 'text';
+          request4.send();
+          request4.onload = function() {
+            const avgVolume4 = Number(request4.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>30 Day Average Daily Volume: $' + avgVolume4.toFixed(2);
+          };
+
+          const request2 = new XMLHttpRequest();
+          request2.open('GET', '/data2000');
+          request2.responseType = 'text';
+          request2.send();
+          request2.onload = function() {
+            const avgVolume2 = Number(request2.response);
+
+            // Display average daily APR
+            formulasContainer.innerHTML += '<br>Average Daily APR: ' + avgVolume2.toFixed(4) + "%";
+          };
+
+          const request3 = new XMLHttpRequest();
+          request3.open('GET', '/data3000');
+          request3.responseType = 'text';
+          request3.send();
+          request3.onload = function() {
+            const avgVolume3 = Number(request3.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>7 Day Average Daily APR: ' + avgVolume3.toFixed(4) + "%";
+          };
+
+          const request5 = new XMLHttpRequest();
+          request5.open('GET', '/data4000');
+          request5.responseType = 'text';
+          request5.send();
+          request5.onload = function() {
+            const avgVolume5 = Number(request5.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>30 Day Average Daily APR: ' + avgVolume5.toFixed(4) + "%";
+          };
+
+        } else {
+          chartContainer.style.display = "none";
+          formulasContainer.style.display = 'none';
+        }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+usdcSusdButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+          chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_chart10000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart30000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart20000') }}" style="width: 100%; height: 500px;"></iframe>
+            `;
+            chartContainer.style.display = "block";
+
+          // Load data and calculate average volume
+          const request = new XMLHttpRequest();
+          request.open('GET', '/data10000');
+          request.responseType = 'text';
+          request.send();
+          request.onload = function() {
+            const avgVolume = Number(request.response);
+
+            // Display average volume
+            formulasContainer.innerHTML = 'Average Daily Volume: $' + avgVolume.toFixed(2);
+            formulasContainer.style.display = 'block';
+          };
+
+          const request0 = new XMLHttpRequest();
+          request0.open('GET', '/data00000');
+          request0.responseType = 'text';
+          request0.send();
+          request0.onload = function() {
+            const avgVolume0 = Number(request0.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>7 Day Average Daily Volume: $' + avgVolume0.toFixed(2);
+          };
+
+          const request4 = new XMLHttpRequest();
+          request4.open('GET', '/data010000');
+          request4.responseType = 'text';
+          request4.send();
+          request4.onload = function() {
+            const avgVolume4 = Number(request4.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>30 Day Average Daily Volume: $' + avgVolume4.toFixed(2);
+          };
+
+          const request2 = new XMLHttpRequest();
+          request2.open('GET', '/data20000');
+          request2.responseType = 'text';
+          request2.send();
+          request2.onload = function() {
+            const avgVolume2 = Number(request2.response);
+
+            // Display average daily APR
+            formulasContainer.innerHTML += '<br>Average Daily APR: ' + avgVolume2.toFixed(4) + "%";
+          };
+
+          const request3 = new XMLHttpRequest();
+          request3.open('GET', '/data30000');
+          request3.responseType = 'text';
+          request3.send();
+          request3.onload = function() {
+            const avgVolume3 = Number(request3.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>7 Day Average Daily APR: ' + avgVolume3.toFixed(4) + "%";
+          };
+
+          const request5 = new XMLHttpRequest();
+          request5.open('GET', '/data40000');
+          request5.responseType = 'text';
+          request5.send();
+          request5.onload = function() {
+            const avgVolume5 = Number(request5.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>30 Day Average Daily APR: ' + avgVolume5.toFixed(4) + "%";
+          };
+
+        } else {
+          chartContainer.style.display = "none";
+          formulasContainer.style.display = 'none';
+        }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+daiUsdcButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+          chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_chart100000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart300000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart200000') }}" style="width: 100%; height: 500px;"></iframe>
+            `;
+            chartContainer.style.display = "block";
+
+          // Load data and calculate average volume
+          const request = new XMLHttpRequest();
+          request.open('GET', '/data100000');
+          request.responseType = 'text';
+          request.send();
+          request.onload = function() {
+            const avgVolume = Number(request.response);
+
+            // Display average volume
+            formulasContainer.innerHTML = 'Average Daily Volume: $' + avgVolume.toFixed(2);
+            formulasContainer.style.display = 'block';
+          };
+
+          const request0 = new XMLHttpRequest();
+          request0.open('GET', '/data000000');
+          request0.responseType = 'text';
+          request0.send();
+          request0.onload = function() {
+            const avgVolume0 = Number(request0.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>7 Day Average Daily Volume: $' + avgVolume0.toFixed(2);
+          };
+
+          const request4 = new XMLHttpRequest();
+          request4.open('GET', '/data0100000');
+          request4.responseType = 'text';
+          request4.send();
+          request4.onload = function() {
+            const avgVolume4 = Number(request4.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>30 Day Average Daily Volume: $' + avgVolume4.toFixed(2);
+          };
+
+          const request2 = new XMLHttpRequest();
+          request2.open('GET', '/data200000');
+          request2.responseType = 'text';
+          request2.send();
+          request2.onload = function() {
+            const avgVolume2 = Number(request2.response);
+
+            // Display average daily APR
+            formulasContainer.innerHTML += '<br>Average Daily APR: ' + avgVolume2.toFixed(4) + "%";
+          };
+
+          const request3 = new XMLHttpRequest();
+          request3.open('GET', '/data300000');
+          request3.responseType = 'text';
+          request3.send();
+          request3.onload = function() {
+            const avgVolume3 = Number(request3.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>7 Day Average Daily APR: ' + avgVolume3.toFixed(4) + "%";
+          };
+
+          const request5 = new XMLHttpRequest();
+          request5.open('GET', '/data400000');
+          request5.responseType = 'text';
+          request5.send();
+          request5.onload = function() {
+            const avgVolume5 = Number(request5.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>30 Day Average Daily APR: ' + avgVolume5.toFixed(4) + "%";
+          };
+
+        } else {
+          chartContainer.style.display = "none";
+          formulasContainer.style.display = 'none';
+        }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+fraxUsdcButton05.addEventListener("click", function() {
+        if (chartContainer.style.display === "none") {
+          chartContainer.innerHTML = `
+            <iframe src="{{ url_for('get_chart1000000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart3000000') }}" style="width: 100%; height: 500px;"></iframe>
+            <iframe src="{{ url_for('get_chart2000000') }}" style="width: 100%; height: 500px;"></iframe>
+            `;
+            chartContainer.style.display = "block";
+
+          // Load data and calculate average volume
+          const request = new XMLHttpRequest();
+          request.open('GET', '/data1000000');
+          request.responseType = 'text';
+          request.send();
+          request.onload = function() {
+            const avgVolume = Number(request.response);
+
+            // Display average volume
+            formulasContainer.innerHTML = 'Average Daily Volume: $' + avgVolume.toFixed(2);
+            formulasContainer.style.display = 'block';
+          };
+
+          const request0 = new XMLHttpRequest();
+          request0.open('GET', '/data0000000');
+          request0.responseType = 'text';
+          request0.send();
+          request0.onload = function() {
+            const avgVolume0 = Number(request0.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>7 Day Average Daily Volume: $' + avgVolume0.toFixed(2);
+          };
+
+          const request4 = new XMLHttpRequest();
+          request4.open('GET', '/data01000000');
+          request4.responseType = 'text';
+          request4.send();
+          request4.onload = function() {
+            const avgVolume4 = Number(request4.response);
+
+            // Display 7 day average daily volume
+            formulasContainer.innerHTML += '<br>30 Day Average Daily Volume: $' + avgVolume4.toFixed(2);
+          };
+
+          const request2 = new XMLHttpRequest();
+          request2.open('GET', '/data2000000');
+          request2.responseType = 'text';
+          request2.send();
+          request2.onload = function() {
+            const avgVolume2 = Number(request2.response);
+
+            // Display average daily APR
+            formulasContainer.innerHTML += '<br>Average Daily APR: ' + avgVolume2.toFixed(4) + "%";
+          };
+
+          const request3 = new XMLHttpRequest();
+          request3.open('GET', '/data3000000');
+          request3.responseType = 'text';
+          request3.send();
+          request3.onload = function() {
+            const avgVolume3 = Number(request3.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>7 Day Average Daily APR: ' + avgVolume3.toFixed(4) + "%";
+          };
+
+          const request5 = new XMLHttpRequest();
+          request5.open('GET', '/data4000000');
+          request5.responseType = 'text';
+          request5.send();
+          request5.onload = function() {
+            const avgVolume5 = Number(request5.response);
+
+            // Display 7 day average daily APR
+            formulasContainer.innerHTML += '<br>30 Day Average Daily APR: ' + avgVolume5.toFixed(4) + "%";
+          };
+
+        } else {
+          chartContainer.style.display = "none";
+          formulasContainer.style.display = 'none';
+        }
+      });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>NAV</title>
+  </head>
+  <body>
+    <h1>NAV</h1>
+    <p>Starting NAV: $110.00</p>
+    <p>Current NAV: $110.00</p>
+    <p>Fees Paid: $110.00</p>
+
+    <iframe id="navFrame" src="" style="display: none;"></iframe>
+
+    <script>
+      function appendNavLine(navLine) {
+        const iframe = document.getElementById('navFrame');
+        const iframeDocument = iframe.contentWindow.document;
+        iframeDocument.open();
+        iframeDocument.write(navLine);
+        iframeDocument.close();
+      }
+
+      // Fetch the NAV line from the JavaScript script
+      fetch('file:///C:/Users/paulp/OneDrive%20-%20Taiga%20Group%20Holdings,%20LLC/Shared%20-%20Taiga%20Group%20Holdings/Apex%20Executable/Gas%20Dashboard/static/Taiga%20Home/NAV/dailyNAV.js')
+        .then(response => response.text())
+        .then(data => {
+          appendNavLine(data);
+        })
+        .catch(error => console.log(error));
+    </script>
+  </body>
+</html>

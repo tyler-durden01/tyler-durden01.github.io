@@ -3,17 +3,21 @@
 <head>
     <!-- Add a back button linking to the home page -->
     <a href="/">Back to Home</a>
-    <title>Stock Data</title>
+    <title>Kyle Jennings</title>
 </head>
 <body>
     <h1>Stock Data</h1>
 
-    <form method="POST" action="/get_company_data">
-        <label for="ticker">Enter Stock Ticker Symbol:</label>
+    <form method="POST" action="/get_economic_data">
+        <label for="ticker">Enter Stock Ticker Symbol (e.g., AAPL):</label>
         <input type="text" id="ticker" name="ticker" required>
         <button type="submit">Get Data</button>
     </form>
 
+
+    <div class="top-statement">
+        <p>All non-percentage figures are in $ millions</p>
+    </div>
 
 
     {% if data %}
