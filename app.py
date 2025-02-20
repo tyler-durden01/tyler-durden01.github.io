@@ -595,15 +595,20 @@ def get_company_data():
             combined_dfs = []  # Initialize an empty list to store DataFrames
 
             for ticker in tickers:
-                df1 = pd.DataFrame(get_data(ticker, start_date, end_date))
-                df1.drop(['adjclose', 'ticker'], axis=1, inplace=True)
-                # print(df1)
+                # url1 = f"https://financialmodelingprep.com/api/v3/historical-price-full/{ticker}?from={start_date}&to={end_date}&apikey=6fe8c4680cf2609b34c3674e0a32720b"
+                
+                
+                
 
                 # Define the API URL with the chosen ticker and date range for market capitalization
                 url = f"https://financialmodelingprep.com/api/v3/historical-market-capitalization/{ticker}?from={start_date}&to={end_date}&apikey=6fe8c4680cf2609b34c3674e0a32720b"
                 # url2 = f"https://financialmodelingprep.com/api/v4/shares_float?symbol={ticker}?from={start_date}&to={end_date}&apikey=6fe8c4680cf2609b34c3674e0a32720b"
 
                 try:
+                    df1 = pd.DataFrame(get_data(ticker, start_date, end_date))
+                    df1.drop(['adjclose', 'ticker'], axis=1, inplace=True)
+                    # print(df1)
+                
                     response = requests.get(url)
                     response.raise_for_status()  # Raise an exception if the request fails
                     historical_market_caps = response.json()
